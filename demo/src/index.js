@@ -1,14 +1,15 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
 
-import Example from '../../src'
+import MidiContext from '../../src'
 
 export default class Demo extends Component {
   render() {
-    return <div>
-      <h1>react-midi-context Demo</h1>
-      <Example/>
-    </div>
+    return (
+      <MidiContext debug={true}>
+        yo
+      </MidiContext>
+    )
   }
 }
 
