@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
-import MidiContext from '../../src'
+import MidiContext from '../../src';
 
 export default class Demo extends Component {
   render() {
@@ -9,8 +9,8 @@ export default class Demo extends Component {
       <MidiContext debug={true}>
         yo
       </MidiContext>
-    )
+    );
   }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo/>, document.querySelector('#demo'));

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import WebMidi from 'webmidi';
 import retry from 'async-retry';
 
+MidiContext.propTypes = {
+  children: PropTypes.array,
+  debug: PropTypes.bool
+};
+
 class MidiContext extends Component {
-  constructor(props) {
+  constructor() {
     super(...arguments);
     this.state = { inputs: [] };
 
@@ -11,7 +17,7 @@ class MidiContext extends Component {
   }
 
   componentWillUnmount() {
-    console.info('Removing MIDI event listeners')
+    console.info('Removing MIDI event listeners');
     this.state.inputs.forEach((input) => input.removeListener());
   }
 
