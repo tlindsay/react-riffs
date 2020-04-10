@@ -1,16 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
-import MidiContext from '../../src';
+import useMidiInputs from '../../src';
 
-export default class Demo extends Component {
-  render() {
-    return (
-      <MidiContext debug={true}>
-        yo
-      </MidiContext>
-    );
-  }
+function Demo() {
+  let [midiInput] = useMidiInputs();
+  let [pressedKeys, setKeys] = useState([]);
+  let [bend, setBend] = useState(null);
+
+  useEffect(() => {
+    if (!midiInput) { return; }
+
+    midiInput.addListener('noteon', 'all', ({ note }) => setKeys(prevState => [...prevState, note.name]));
+    midiInput.addListener('noteoff', 'all', ({ note }) => setKeys(prevState => prevState.filter(k => k !== note.name)));
+    midiInput.addListener('pitchbend', 'all', ({ value }) => setBend(value));
+  }, [midiInput]);
+
+  return (
+    <div>
+      Bend: {bend}
+      <ul>
+        {pressedKeys.map((k, i) => <li key={i}>{k}</li>)}
+      </ul>
+    </div>
+  );
 }
-
 render(<Demo/>, document.querySelector('#demo'));
