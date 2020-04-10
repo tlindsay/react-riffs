@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import WebMidi from 'webmidi';
 import retry from 'async-retry';
 
-MidiContext.propTypes = {
-  children: PropTypes.array,
-  debug: PropTypes.bool
-};
-
 class MidiContext extends Component {
   constructor() {
     super(...arguments);
@@ -31,6 +26,11 @@ class MidiContext extends Component {
 
           if (this.props.debug) {
             this.addDebugListeners();
+            WebMidi.addListener('connected', () => {
+              console.log('new connection');
+              this.addDebugListeners();
+            });
+            WebMidi.addListener('disconnected', () => console.log('connection lost'));
           }
         }
       });
@@ -39,11 +39,11 @@ class MidiContext extends Component {
 
   addDebugListeners() {
     this.state.inputs.forEach((input) => {
-      input.addListener('noteon', 'all', () => console.log('noteon'));
-      input.addListener('pitchbend', 'all', () => console.log('pitchbend'));
-      input.addListener('start', 'all', () => console.log('start'));
-      input.addListener('stop', 'all', () => console.log('stop'));
-      input.addListener('reset', 'all', () => console.log('reset'));
+      input.addListener('noteon', 'all', (e) => console.log('noteon', e));
+      input.addListener('pitchbend', 'all', (e) => console.log('pitchbend', e));
+      input.addListener('start', 'all', (e) => console.log('start', e));
+      input.addListener('stop', 'all', (e) => console.log('stop', e));
+      input.addListener('reset', 'all', (e) => console.log('reset', e));
     });
   }
 
@@ -53,5 +53,10 @@ class MidiContext extends Component {
     );
   }
 }
+
+MidiContext.propTypes = {
+  children: PropTypes.array,
+  debug: PropTypes.bool
+};
 
 export default MidiContext;
