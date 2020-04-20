@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-import { useMidiInputs } from '../../src';
+import {
+  useClock,
+  useMidiInputs,
+  useMidiNotes,
+  usePitchBend
+} from '../../src';
 
 function Demo() {
   let [midiInput] = useMidiInputs();
-  let [pressedKeys, setKeys] = useState([]);
-  let [bend, setBend] = useState(null);
-
-  useEffect(() => {
-    if (!midiInput) { return; }
-
-    midiInput.addListener('noteon', 'all', ({ note }) => setKeys(prevState => [...prevState, note.name]));
-    midiInput.addListener('noteoff', 'all', ({ note }) => setKeys(prevState => prevState.filter(k => k !== note.name)));
-    midiInput.addListener('pitchbend', 'all', ({ value }) => setBend(value));
-  }, [midiInput]);
+  let pressedKeys = useMidiNotes(midiInput, 15);
+  let bend = usePitchBend(midiInput);
+  let clock = useClock(midiInput);
 
   return (
-    <div>
-      Bend: {bend}
+    <div style={{fontFamily: 'monospace'}}>
+      <div>Clock: {clock}</div>
+      <div>Bend: {bend}</div>
       <ul>
-        {pressedKeys.map((k, i) => <li key={i}>{k}</li>)}
+        {pressedKeys.map(({ note: n, velocity: v }, i) => <li key={i}>{n.name} {n.number} {v}</li>)}
       </ul>
     </div>
   );
