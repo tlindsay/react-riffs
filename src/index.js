@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import WebMidi from 'webmidi';
 import { isEmpty } from 'lodash/lang';
 
-function useMidiInputs(opts = { debug: false }) {
+export function useMidiInputs(opts = { debug: false }) {
   const { debug } = opts;
   const [inputs, setInputs] = useState([]);
 
@@ -29,7 +29,7 @@ function useMidiInputs(opts = { debug: false }) {
         setInputs(WebMidi.inputs);
       }
     });
-  }, [inputs]);
+  }, []);
 
   return inputs;
 }
@@ -49,5 +49,3 @@ function addDebugListeners(inputs) {
 function teardownMidiListeners(inputs) {
   inputs.forEach((input) => input.removeListener());
 }
-
-export default useMidiInputs;

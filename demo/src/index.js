@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
-import useMidiInputs from '../../src';
+import { useMidiInputs } from '../../src';
 
 function Demo() {
   let [midiInput] = useMidiInputs();
