@@ -1,7 +1,7 @@
 {
-  "name": "react-midi-context",
+  "name": "react-riffs",
   "version": "1.0.0",
-  "description": "react-midi-context React component",
+  "description": "React Hooks for WebMidi.js",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -39,8 +39,10 @@
   "author": "Patrick Lindsay",
   "homepage": "",
   "license": "GPL-3.0",
-  "repository": "https://github.com/tlindsay/react-midi-context",
+  "repository": "https://github.com/tlindsay/react-riffs",
   "keywords": [
-    "react-component"
+    "react-hooks",
+    "midi",
+    "web-midi"
   ]
 }

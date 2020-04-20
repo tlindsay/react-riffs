@@ -1,10 +1,10 @@
-# react-midi-context
+# 🧑‍🎤 react-riffs
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-midi-context here.
+React Hooks + MIDI 🎹 = 🎶 Riffs 🎶
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
