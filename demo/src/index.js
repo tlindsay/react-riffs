@@ -4,14 +4,14 @@ import { render } from 'react-dom';
 import {
   useClock,
   useMidiInputs,
-  useMidiNotes,
-  usePitchBend
+  useNotes,
+  usePitchbend
 } from '../../src';
 
 function Demo() {
   let [midiInput] = useMidiInputs();
-  let pressedKeys = useMidiNotes(midiInput, 15);
-  let bend = usePitchBend(midiInput);
+  let pressedKeys = useNotes(midiInput, 15);
+  let bend = usePitchbend(midiInput);
   let clock = useClock(midiInput);
 
   return (
