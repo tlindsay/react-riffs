@@ -1,6 +1,6 @@
 {
   "name": "react-riffs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React Hooks for WebMidi.js",
   "main": "lib/index.js",
   "module": "es/index.js",
