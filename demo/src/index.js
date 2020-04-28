@@ -9,7 +9,7 @@ import {
 } from '../../src';
 
 function Demo() {
-  let [midiInput] = useMidiInputs();
+  let [midiInput] = useMidiInputs({ debug: true });
   let pressedKeys = useNotes(midiInput, 15);
   let bend = usePitchbend(midiInput);
   let clock = useClock(midiInput);
