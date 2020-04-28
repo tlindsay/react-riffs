@@ -48,6 +48,10 @@
       "@babel/preset-env"
     ]
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/"
+  },
   "author": "Patrick Lindsay",
   "homepage": "",
   "license": "GPL-3.0",
