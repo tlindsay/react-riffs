@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function useNote(input, channel = 'all') {
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState([{}, false]);
 
   const on = (e) => setValue([e, true]);
   const off = (e) => setValue([e, false]);
