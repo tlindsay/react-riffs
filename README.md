@@ -1,16 +1,7 @@
 # 🧑‍🎤 react-riffs
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+[![Build Status](https://travis-ci.com/tlindsay/react-riffs.svg?branch=master)](https://travis-ci.com/tlindsay/react-riffs)
+[![npm](https://img.shields.io/npm/v/react-riffs)](https://www.npmjs.com/package/react-riffs)
+[![Coverage Status](https://coveralls.io/repos/github/tlindsay/react-riffs/badge.svg?branch=master)](https://coveralls.io/github/tlindsay/react-riffs?branch=master)
 
 React Hooks + MIDI 🎹 = 🎶 Riffs 🎶
-
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
-
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
