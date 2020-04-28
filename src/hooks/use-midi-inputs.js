@@ -15,18 +15,18 @@ export default function useMidiInputs(opts = { debug: false }) {
 
     WebMidi.enable((err) => {
       if (!err) {
+        setInputs(WebMidi.inputs);
+
         if (debug) {
           WebMidi.addListener('connected', () => {
-            console.log('new connection');
+            console.debug('new connection');
             addDebugListeners(WebMidi.inputs);
           });
           WebMidi.addListener('disconnected', () => {
-            console.log('connection lost');
-            teardownMidiListeners(inputs);
+            console.debug('connection lost');
+            teardownMidiListeners(WebMidi.inputs);
           });
         }
-
-        setInputs(WebMidi.inputs);
       } else {
         console.error(err);
       }
