@@ -24,7 +24,7 @@ export default {
     },
     addListener(type, channel, fn) {
       if (_.includes(Object.keys(this._userHandlers.system), type)) { // if system event
-        this._userHandlers.system.clock.push(fn.bind(null, mockEvents[type]));
+        this._userHandlers.system[type].push(fn.bind(null, mockEvents[type]));
       } else { // if channel event
         if (channel === 'all') {
           Object.keys(this._userHandlers.channel[type]).forEach((key) => {
@@ -43,7 +43,10 @@ export default {
           pitchbend: { 1: [], 2: [], 3: [] }
         },
         system: {
-          clock: []
+          clock: [],
+          start: [],
+          stop: [],
+          reset: []
         }
       };
     }

@@ -42,7 +42,17 @@ export default {
     value: 0.5
   },
   reset: {},
-  start: {},
-  stop: {}
+  start: {
+    target: {},
+    data: new Uint8Array([250]),
+    timestamp: 1.23456789,
+    type: 'start'
+  },
+  stop: {
+    target: {},
+    data: new Uint8Array([252]),
+    timestamp: 2345.678901,
+    type: 'stop'
+  }
 };
 
