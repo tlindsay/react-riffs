@@ -40,12 +40,15 @@ Once you have your `input`, you can start reading from your input device. Just r
 **Each of the following takes an optional channel as the second parameter. If no channel is specified, it will default to `'all'`.**
 
 ### `useClock`
-Returns the current timestamp from the input device
+Returns the current timestamp from the input device along with a boolean representing whether or not the clock is currently running
 ```js
-let timestamp = useClock(myInput);
+let [timestamp, isRunning] = useClock(myInput);
 
 console.log(timestamp);
 //=> 1234.1234567890123
+
+console.log(isRunning);
+//=> false
 ```
 
 ### `useNote`
