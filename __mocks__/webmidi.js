@@ -18,8 +18,7 @@ export default {
       system: {
         clock: [],
         start: [],
-        stop: [],
-        reset: []
+        stop: []
       }
     },
     addListener(type, channel, fn) {
@@ -45,8 +44,7 @@ export default {
         system: {
           clock: [],
           start: [],
-          stop: [],
-          reset: []
+          stop: []
         }
       };
     }

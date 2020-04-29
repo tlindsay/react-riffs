@@ -43,7 +43,6 @@ function addDebugListeners(inputs) {
       input.addListener('pitchbend', 'all', (e) => console.log('pitchbend', e));
       input.addListener('start', 'all', (e) => console.log('start', e));
       input.addListener('stop', 'all', (e) => console.log('stop', e));
-      input.addListener('reset', 'all', (e) => console.log('reset', e));
     });
   }
 }

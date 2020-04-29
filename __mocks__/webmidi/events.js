@@ -41,7 +41,6 @@ export default {
     type: 'pitchbend',
     value: 0.5
   },
-  reset: {},
   start: {
     target: {},
     data: new Uint8Array([250]),

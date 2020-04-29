@@ -29,7 +29,7 @@ console.log(myInput);
 //=> Input {_userHandlers: {...}, _midiInput: MIDIInput, ...}
 ```
 
-`useMidiInputs` takes an optional `debug` flag, which will add listeners to log the following events to the console: `noteon`, `pitchbend`, `start`, `stop`, `reset`
+`useMidiInputs` takes an optional `debug` flag, which will add listeners to log the following events to the console: `noteon`, `pitchbend`, `start`, `stop`
 
 ```js
 let [myInput] = useMidiInputs({ debug: true });
