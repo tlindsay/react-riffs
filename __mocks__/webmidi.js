@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { includes } from 'lodash/collection';
 import mockEvents from './webmidi/events';
 
 export default {
@@ -22,15 +22,15 @@ export default {
       }
     },
     addListener(type, channel, fn) {
-      if (_.includes(Object.keys(this._userHandlers.system), type)) { // if system event
-        this._userHandlers.system[type].push(fn.bind(null, mockEvents[type]));
+      if (includes(Object.keys(this._userHandlers.system), type)) { // if system event
+        this._userHandlers.system[type].push(() => fn(mockEvents[type]));
       } else { // if channel event
         if (channel === 'all') {
           Object.keys(this._userHandlers.channel[type]).forEach((key) => {
-            this._userHandlers.channel[type][key].push(fn.bind(null, mockEvents[type]));
+            this._userHandlers.channel[type][key].push(() => fn(mockEvents[type]));
           });
         } else {
-          this._userHandlers.channel[type][channel].push(fn.bind(null, mockEvents[type]));
+          this._userHandlers.channel[type][channel].push(() => fn(mockEvents[type]));
         }
       }
     },
