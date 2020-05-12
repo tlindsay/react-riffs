@@ -6,6 +6,8 @@ describe('usePitchbend hook', () => {
     let [midiInput] = renderHook(() => useMidiInputs()).result.current;
     let { result } = renderHook(() => usePitchbend(midiInput));
 
+    expect(result.current).toEqual(0);
+
     act(() => {
       midiInput._userHandlers.channel.pitchbend['1'].forEach((l) => l.call());
     });
