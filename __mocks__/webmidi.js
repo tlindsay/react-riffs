@@ -11,6 +11,7 @@ export default {
     type: 'input',
     _userHandlers: {
       channel: {
+        controlchange: { 1: [], 2: [], 3: [] },
         noteoff: { 1: [], 2: [], 3: [] },
         noteon: { 1: [], 2: [], 3: [] },
         pitchbend: { 1: [], 2: [], 3: [] }

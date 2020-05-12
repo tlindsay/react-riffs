@@ -39,6 +39,8 @@ export default function useMidiInputs(opts = { debug: false }) {
 function addDebugListeners(inputs) {
   if (inputs) {
     inputs.forEach((input) => {
+      console.log(`${input.name} supported control types:`);
+      console.table(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES);
       input.addListener('noteon', 'all', (e) => console.log('noteon', e));
       input.addListener('pitchbend', 'all', (e) => console.log('pitchbend', e));
       input.addListener('start', 'all', (e) => console.log('start', e));

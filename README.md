@@ -10,6 +10,7 @@ React Hooks + MIDI 🎹 = 🎶 Riffs 🎶
 
 * [`useMidiInputs`](#usemidiinputs)
 * [`useClock`](#useclock)
+* [`useControl`](#usecontrol)
 * [`useNote`](#usenote)
 * [`useNotes`](#usenotes)
 * [`usePitchbend`](#usepitchbend)
@@ -37,7 +38,7 @@ let [myInput] = useMidiInputs({ debug: true });
 
 Once you have your `input`, you can start reading from your input device. Just remember to pass your input object each time you invoke an event hook.
 
-**Each of the following takes an optional channel as the second parameter. If no channel is specified, it will default to `'all'`.**
+**Each of the following takes an optional channel as the last parameter. If no channel is specified, it will default to `'all'`.**
 
 ### `useClock`
 Returns the current timestamp from the input device along with a boolean representing whether or not the clock is currently running
@@ -49,6 +50,17 @@ console.log(timestamp);
 
 console.log(isRunning);
 //=> false
+```
+
+### `useControl`
+Returns the integer value of a `controlchange` event: `0-127`
+This hook accepts as an optional second parameter, a string indicating the control to listen for. If this is not supplied, it will default to `modulationwheelcoarse`.
+A list of valid control types will be printed to the console if `useMidiInputs` is initialized with the `debug` flag.
+```js
+let mod = useControl(myInput);
+
+console.log(mod);
+//=> 64
 ```
 
 ### `useNote`

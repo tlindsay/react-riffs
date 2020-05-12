@@ -5,6 +5,15 @@ export default {
     timestamp: 1234.56789,
     type: 'clock'
   },
+  controlchange: {
+    target: {},
+    data: new Uint8Array([1, 2, 3]),
+    timestamp: 1234.56789,
+    channel: 1,
+    controller: { number: 1, name: 'modulationwheelcoarse' },
+    type: 'controlchange',
+    value: 64
+  },
   noteoff: {
     target: {},
     data: new Uint8Array([1, 2, 3]),
