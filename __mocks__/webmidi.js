@@ -51,6 +51,6 @@ export default {
     }
   }],
 
-  addListener(type, cb) { if (type === 'connected') cb(); },
+  addListener(type, cb) { if (type === 'connected') cb({ port: this.inputs[0] }); },
   enable(cb) { cb(false); }
 };

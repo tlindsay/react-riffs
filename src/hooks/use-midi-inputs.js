@@ -15,18 +15,25 @@ export default function useMidiInputs(opts = { debug: false }) {
 
     WebMidi.enable((err) => {
       if (!err) {
-        setInputs(WebMidi.inputs);
+        WebMidi.addListener('connected', ({ port }) => {
+          if (port.type !== 'input') return;
 
-        if (debug) {
-          WebMidi.addListener('connected', () => {
-            console.debug('new connection');
-            addDebugListeners(WebMidi.inputs);
-          });
-          WebMidi.addListener('disconnected', () => {
-            console.debug('connection lost');
-            teardownMidiListeners(WebMidi.inputs);
-          });
-        }
+          if (debug) {
+            console.groupCollapsed('[riffs] new connection', port.name, inputs);
+            addDebugListeners(port);
+            console.groupEnd();
+          }
+
+          setInputs(WebMidi.inputs);
+        });
+        WebMidi.addListener('disconnected', ({ port }) => {
+          if (port.type !== 'input') return;
+
+          if (debug) console.debug('connection lost: ', port.name);
+
+          setInputs(WebMidi.inputs.filter(({ id }) => id !== port.id));
+          teardownMidiListeners(port);
+        });
       } else {
         console.error(err);
       }
@@ -36,19 +43,17 @@ export default function useMidiInputs(opts = { debug: false }) {
   return inputs;
 }
 
-function addDebugListeners(inputs) {
-  if (inputs) {
-    inputs.forEach((input) => {
-      console.log(`${input.name} supported control types:`);
-      console.table(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES);
-      input.addListener('noteon', 'all', (e) => console.log('noteon', e));
-      input.addListener('pitchbend', 'all', (e) => console.log('pitchbend', e));
-      input.addListener('start', 'all', (e) => console.log('start', e));
-      input.addListener('stop', 'all', (e) => console.log('stop', e));
-    });
-  }
+function addDebugListeners(input) {
+  console.log(`${input.name} supported control types:`);
+  console.table(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES);
+  input.addListener('noteon', 'all', (e) => console.log('noteon', e));
+  input.addListener('pitchbend', 'all', (e) => console.log('pitchbend', e));
+  input.addListener('controlchange', 'all', (e) => console.log('controlchange', e));
+  input.addListener('start', 'all', (e) => console.log('start', e));
+  input.addListener('stop', 'all', (e) => console.log('stop', e));
 }
 
-function teardownMidiListeners(inputs) {
-  inputs.forEach((input) => input.removeListener());
+function teardownMidiListeners(input) {
+  if (!input.removeListener) return;
+  input.removeListener();
 }

@@ -1,4 +1,13 @@
 export default {
+  // SYSTEM EVENTS
+  connected: {
+    port : {
+      type: 'input',
+      name: 'Arturia Keystep 32'
+    }
+  },
+
+  // CONTROLLER EVENTS
   clock: {
     target: {},
     data: new Uint8Array([248]),
