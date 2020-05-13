@@ -12,7 +12,7 @@ import {
 function Demo() {
   let inputs = useMidiInputs({ debug: true });
   let [midiInput] = inputs;
-  let pressedKeys = useNotes(midiInput, 15);
+  let pressedKeys = useNotes(midiInput);
   let bend = usePitchbend(midiInput);
   let mod = useControl(midiInput);
   let [clock] = useClock(midiInput);
