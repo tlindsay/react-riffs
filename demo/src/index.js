@@ -10,7 +10,7 @@ import {
 } from '../../src';
 
 function Demo() {
-  let inputs = useMidiInputs({ debug: false });
+  let inputs = useMidiInputs({ debug: true });
   let [midiInput, setInput] = useState(inputs[0]);
   let pressedKeys = useNotes(midiInput);
   let bend = usePitchbend(midiInput);
